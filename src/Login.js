@@ -1,20 +1,46 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import M from "materialize-css";
 import axios from "axios";
 
 const Login = () => {
-  M.AutoInit();
+  document.title = "Blog Sphere Network | Login";
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPAssword] = useState("");
+  M.AutoInit();
 
-  const handleSubmit = (e) => {
+  
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const body = { email, password };
+
+    try{
+    const response = await fetch('http://localhost:8000/auth/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+    })
+
+    if(response.ok){
+    const data = await response.json();
+    history.push('/');
+    M.toast({ html: data.message, classes: 'green'})
+    } else {
+    const data = await response.json();
+    M.toast({ html: data.message, classes: 'red'})
+    }
+    } catch (error) {
+    console.log('Error:', error)
+    }
   };
 
   const url = "http://localhost:8000/google";
 
-  document.title = "Blog Sphere Network | Login";
+  
   return (
     <div className="login">
       
@@ -27,11 +53,14 @@ const Login = () => {
       
       </div>
       <div className="row">
-      <form className="login-form col s12 m4 container ">
+      <form className="login-form col s12 m4 container" onSubmit={handleSubmit}>
         <fieldset className="login-fieldset z-depth-4">
           <div className="row">
             <div className="input-field col s12 ">
-              <input id="email" type="email" className="validate" />
+              <input id="email" type="email" value={email} 
+              className="validate" required
+              onChange={(e) => setEmail(e.target.value)}
+              />
               <label htmlFor="email">Email</label>
             </div>
           </div>
@@ -40,16 +69,19 @@ const Login = () => {
               <input
                 id="password"
                 type="password"
-                className="validate "
+                value={password}
+                className="validate"
+                required
+                onChange={(e) => setPAssword(e.target.value)}
               />
               <label htmlFor="password">Password</label>
             </div>
           </div>
           <div className="row">
             <div className="col s12">
-              <a href="/login" className="waves-effect waves-light btn-small">
+              <button className="waves-effect waves-light btn-small" type='submit'>
                 Login
-              </a>
+              </button>
             </div>
           </div>
           <div className="row">
@@ -70,7 +102,7 @@ const Login = () => {
           <div className="row">
             <div className="col s12">
               <a
-                href="/login"
+                href="/registration"
                 className="waves-effect waves-light btn-small green accent-4"
               >
                 Create New Account

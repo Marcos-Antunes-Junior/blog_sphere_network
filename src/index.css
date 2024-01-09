@@ -1,73 +1,110 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
+
+
+
 /******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
   margin: 0;
-  font-family: 'Quicksand';
+  font-family: "Quicksand";
 }
 
-body {
-  background-color: #f3fff6;
+body{
+background-color: #f3fff6; 
 }
 
 .login {
+  
   display: flex;
   align-items: center;
   justify-content: center;
+
+
 }
+
 
 .login-fieldset {
-  border-radius: 20px;
-  padding: 40px;
-  background-color: #f5fffa;
+border-radius: 20px;
+padding: 40px;
+background-color: #f5fffa;
 }
 
-.login-form h2 {
+
+
+.login-form h2{
   color: #000000;
   font-size: 20px;
   font-style: italic;
+  
 }
 
 .login-form label {
   text-align: left;
   display: block;
+  
 }
+
 
 /* Icon styles */
 .google-logo {
-  width: 18px;
-  height: 18px;
+  width:18px;
+  height:18px;
   margin-right: 4px;
   margin-bottom: 5px;
   vertical-align: middle;
+  
 }
 
-.loginMessage {
+.loginMessage{
   margin-bottom: 20px;
 }
 
-.loginMessage h3 {
+.loginMessage h3{
   color: #074817;
   font-weight: bold;
 }
 
-.loginMessage p {
+.loginMessage p{
   color: #000;
+  
 }
+
+#cat-gif{
+  display: none;
+}
+
+
 
 @media only screen and (min-width: 35rem) {
+ 
 }
+
+
 
 @media only screen and (min-width: 64rem) {
-  .login {
-    margin-top: 10%;
-  }
 
-  .loginImage {
-    margin: 0 auto;
-    width: 60%;
-  }
+
+
+.login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
+
+
+.loginImage{
+  margin: 0 auto;
+  width: 60%;
+}
+
+#cat-gif{
+  display: block;
+}
+
+
+}
+
